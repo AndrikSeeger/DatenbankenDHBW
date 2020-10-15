@@ -5,3 +5,7 @@ Datenbanken Homework Exercises
 Andrik Seeger
 
 Tom Schubert 
+
+Julian Schmelz
+
+Finn Schuische
