@@ -1,0 +1,81 @@
+CREATE TABLE File(
+  File_ID INTEGER NOT NULL,
+  Name VARCHAR(100),
+  Version VARCHAR(5),
+  Encoding VARCHAR(5),
+  PRIMARY KEY(File_ID)
+);
+
+
+CREATE TABLE Method(
+  Method_ID INTEGER NOT NULL, 
+  File_ID INTEGER,
+  UID VARCHAR(100),
+  Name VARCHAR(100),
+  Unit VARCHAR(30),
+  PRIMARY KEY(Method_ID),
+  FOREIGN KEY(File_ID) REFERENCES File(File_ID)
+);
+
+CREATE TABLE Header(
+  Hesder_ID INTEGER NOT NULL,
+  File_ID INTEGER,
+  ConfigName VARCHAR(50),
+  ActiveSince DATE,
+  Timestmp TIMESTAMP,
+  Vin VARCHAR(200),
+  InternalIdentification VARCHAR(50),
+  Odometer_unit VARCHAR(10),
+  Odometer_value INTEGER,
+  PRIMARY KEY(Header_ID),
+  FOREIGN KEY(File_ID) REFERENCES File(File_ID)
+);
+
+CREATE TABLE Header(
+  Header_ID INTEGER NOT NULL,
+  File_ID INTEGER,
+  ConfigName VARCHAR(50),
+  ActiveSince DATE,
+  Timestmp TIMESTAMP,
+  Vin VARCHAR(200),
+  InternalIdentification VARCHAR(50),
+  Odometer_unit VARCHAR(10),
+  Odometer_value INTEGER,
+  PRIMARY KEY(Header_ID),
+  FOREIGN KEY(File_ID) REFERENCES File(File_ID)
+);
+
+Create Table Activity(
+  Method_ID INTEGER,
+  Name VARCHAR(200),
+  StartConfig VARCHAR(200),
+  StartOdometerUnit VARCHAR(10),
+  StartOdometerValue INTEGER,
+  OdometerActivityUnit VARCHAR(10),
+  OdometerActivityValue INTEGER,
+  FOREIGN KEY(Method_ID) REFERENCES Method(Method_ID)
+);
+
+CREATE TABLE ScalarValues(
+  Method_ID INTEGER,
+  ID INTEGER NOT NULL,
+  Value INTEGER,
+  PRIMARY KEY(ID),
+  FOREIGN KEY(Method_ID) REFERENCES Method(Method_ID)
+);
+
+CREATE TABLE ListValues(
+  Method_ID INTEGER,
+  ID INTEGER NOT NULL,
+  Value_Index INTEGER,
+  PRIMARY KEY(ID),
+  FOREIGN KEY(Method_ID) REFERENCES Method(Method_ID)
+);
+
+CREATE TABLE ArrayValues(
+  Method_ID INTEGER,
+  ID INTEGER NOT NULL,
+  ValueIndex INTEGER,
+  PRIMARY KEY (ID),
+  FOREIGN KEY(Method_ID) REFERENCES Method(Method_ID)
+);
