@@ -8,4 +8,4 @@ Tom Schubert
 
 Julian Schmelz
 
-Finn Schuische
+Finn Schuischel
